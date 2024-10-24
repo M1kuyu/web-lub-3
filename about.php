@@ -1,10 +1,11 @@
 <?php
 // Устанавливаем название страницы
 $title = "О нас - Show Game";
+$current_page = basename($_SERVER['PHP_SELF']); // Получаем имя текущей страницы
 
 // Меню
 $menuItems = [
-    ['url' => 'home.php', 'text' => 'Главная', 'class' => 'home'],
+    ['url' => 'index.php', 'text' => 'Главная', 'class' => 'index'],
     ['url' => 'about.php', 'text' => 'О нас', 'class' => 'about'],
     ['url' => 'categories.php', 'text' => 'Категории', 'class' => 'categories']
 ];
@@ -34,8 +35,9 @@ $currentDateTime = date('d.m.Y в H-i:s');
             <ul>
                 <?php
                 // Выводим меню
-              foreach ($menuItems as $menuItem) {
-                    echo "<li><a href='{$menuItem['url']}' class='{$menuItem['class']}'>{$menuItem['text']}</a></li>";
+                foreach ($menuItems as $menuItem) {
+                    $activeClass = ($menuItem['url'] === $current_page) ? 'active' : '';
+                    echo "<li><a href='{$menuItem['url']}' class='{$menuItem['class']} $activeClass'>{$menuItem['text']}</a></li>";
                 }
                 ?>
             </ul>
