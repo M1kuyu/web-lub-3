@@ -1,6 +1,7 @@
 <?php
 // Устанавливаем название страницы
 $title = "Главная страница - Show Game";
+$current_page = basename($_SERVER['PHP_SELF']); // Получаем имя текущей страницы
 
 // Меню - одинаковый для всех страниц массив ссылок
 $menuItems = [
@@ -35,7 +36,8 @@ $currentDateTime = date('d.m.Y в H-i:s');
                 <?php
                 // Выводим меню
                 foreach ($menuItems as $menuItem) {
-                    echo "<li><a href='{$menuItem['url']}' class='{$menuItem['class']}'>{$menuItem['text']}</a></li>";
+                    $activeClass = ($menuItem['url'] === $current_page) ? 'active' : '';
+                    echo "<li><a href='{$menuItem['url']}' class='{$menuItem['class']} $activeClass'>{$menuItem['text']}</a></li>";
                 }
                 ?>
             </ul>
